@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
  		# student = Student.find(params[:student_id])
  		# course = Course.find(params[:course_id])
  		playlist = Playlist.new(song_id: params[:song_id])
- 							# course_id: params[:course_id])
+ 							album_id: params[:album_id])
  		if playlist.save
  			render json: playlist
  		end
