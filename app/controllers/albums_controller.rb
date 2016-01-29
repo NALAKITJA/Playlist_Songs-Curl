@@ -13,7 +13,7 @@ class AlbumsController < ApplicationController
 	def update # PUT
 		album = Album.find(params[:id])
 		if album.update_attributes(song_params)
-			render json: song, status: 200
+			render json: album, status: 200
 		end
 	end
 	def destroy # DELETE

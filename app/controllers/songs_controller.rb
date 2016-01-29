@@ -11,6 +11,12 @@ class SongsController < ApplicationController
 			
 		end
 	end
+	def update # PUT
+		song = Song.find(params[:id])
+		if song.update_attributes(song_params)
+			render json: song, status: 200
+		end
+	end
 	private
 		def song_params
 			params.require(:song).permit(:name_song, :name_artist)

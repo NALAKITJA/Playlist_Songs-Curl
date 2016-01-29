@@ -1,18 +1,29 @@
 class PlaylistsController < ApplicationController
 	skip_before_action :verify_authenticity_token
+	def index # SELECT #GET
+		# playlists = Playlist.all
+		# render :json => @song
+		# render :json => @album
+	# respond_to do |format|
+ #  	format.json  { render :json => {:song => @song, 
+ #                                  :album => @album }}
+ 	render json: Playlist.all
+ 	# , :include => [:album, :song] 
+
+	end
+
 	def create
  		# student = Student.find(params[:student_id])
  		# course = Course.find(params[:course_id])
- 		playlist = Playlist.new(song_id: params[:song_id])
- 							album_id: params[:album_id])
+
+ 		playlist = Playlist.new(album_id: params[:album_id],
+ 								song_id: params[:song_id])
  		if playlist.save
- 			render json: playlist
+ 			render json: playlist, location: playlist
  		end
 
-	# def index # SELECT #GET
-	# 	#@playlists = Playlist.all
-	# 	render json: Playlist.all
-	# end
+	end
+	
 	# def create # POST
 	# 	playlist = Playlist.new(playlist_params)
 	# 	if playlist.save
@@ -38,12 +49,10 @@ class PlaylistsController < ApplicationController
 	# 	params.require(:playlist).permit(:name, :artist)
 	# end
 		
-	# #def show
-	# #	@playlists = Playlist.find(params[:name])
-	# #	respond_to do |index|
-	# #		index.html {render :text => @playlists.html_content}
-	# #		0
-	# #	end
-		
-	end
+	# private 
+	# def 
+	# 	params.require(:album).permit(:name_album)
+	# end
 end
+# end
+
